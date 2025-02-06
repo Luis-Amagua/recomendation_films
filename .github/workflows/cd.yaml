@@ -3,7 +3,7 @@ name: CI/CD Pipeline
 on:
   push:
     branches:
-      - main
+      - main  # Cambia esto si usas otra rama
   pull_request:
 
 jobs:
@@ -11,22 +11,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Paso 1: Clonar el repositorio
       - name: Clonar repositorio
         uses: actions/checkout@v3
 
+      # Paso 2: Autenticarse en Google Cloud
       - name: Autenticarse en Google Cloud
         uses: google-github-actions/auth@v1
         with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
+          credentials_json: ${{ secrets.GCP_SA_KEY }}  # Usa el secreto de GitHub con las credenciales JSON de GCP
 
+      # Paso 3: Configurar Docker para GCP
       - name: Configurar Docker para GCP
         run: gcloud auth configure-docker
 
+      # Paso 4: Construir y subir la imagen Docker a GCR
       - name: Construir y subir imagen Docker
         run: |
           docker build -t gcr.io/still-nebula-450101-k2/mi-proyecto:latest .
           docker push gcr.io/still-nebula-450101-k2/mi-proyecto:latest
 
+      # Paso 5: Desplegar en Cloud Run
       - name: Desplegar en Cloud Run
         run: |
           gcloud run deploy mi-proyecto \
