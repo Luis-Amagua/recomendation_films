@@ -10,6 +10,9 @@ COPY . /app
 # Instala las dependencias
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Instala gunicorn si aún no está en el requirements.txt
+RUN pip install gunicorn
+
 # Expone el puerto que usará la aplicación Flask
 EXPOSE 5000
 
