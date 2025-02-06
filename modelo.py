@@ -1,3 +1,4 @@
+# modelo de recomendación
 import pandas as pd
 
 # Cargar datos
