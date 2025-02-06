@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recomendador de Películas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+    <ul><h2>Recomendador de Películas</h2></ul>
+
+    <!-- Selección por género -->
+    <form method="POST">
+        <label for="genre">Elige un género:</label>
+        <select name="genre">
+            <option value="Action">Action</option>
+            <option value="Comedy">Comedy</option>
+            <option value="Drama">Drama</option>
+            <option value="Horror">Horror</option>
+            <option value="Romance">Romance</option>
+        </select>
+        <button type="submit">Recomendar</button>
+    </form>
+
+    <!-- Selección por usuario -->
+    <form method="POST">
+        <label for="age">Rango de edad:</label>
+        <select name="age">
+            <option value="" disabled selected>Elige un rango de edad</option>
+            {% for key, value in age_categories.items() %}
+                <option value="{{ key }}">{{ value }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="gender">Género:</label>
+        <select name="gender">
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+        </select>
+
+        <label for="occupation">Ocupación:</label>
+        <select name="occupation">
+            {% for key, value in occupation_categories.items() %}
+                <option value="{{ key }}">{{ value }}</option>
+            {% endfor %}
+        </select>
+
+        <button type="submit">Recomendar</button>
+    </form>
+
+    <!-- Mostrar recomendaciones -->
+    <ul>
+    <h2>Recomendaciones:</h2>
+    
+        {% for movie in recommendations %}
+            <li>{{ movie.title }}</li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

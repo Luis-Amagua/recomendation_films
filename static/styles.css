@@ -1,0 +1,63 @@
+/* Establecemos el fondo con la imagen de fondo */
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('/static/fondo.jpg'); /* Imagen de fondo */
+    background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
+    background-position: center;
+    background-attachment: fixed;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Estilo de los formularios */
+form {
+    margin: 20px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.7); /* Fondo blanco semi-transparente */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    position: relative;
+    top: -10px; /* Subir un poco */
+}
+
+/* Estilo de la lista de recomendaciones */
+h2 {
+    text-align: center;
+    color: white;
+    margin-top: 30px; /* Subir la cabecera */
+}
+
+ul {
+    list-style-type: none;
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro semi-transparente */
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+li {
+    margin: 10px;
+    font-size: 1.2rem;
+    color: white;
+}
+
+/* Estilo de los formularios */
+select, button {
+    font-size: 1rem;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #ff4c4c;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e43f3f;
+}
