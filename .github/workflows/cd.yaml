@@ -1,35 +1,4 @@
-name: CD Pipeline
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Clonar repositorio
-      uses: actions/checkout@v3
-
-    - name: Autenticarse en Google Cloud
-      uses: google-github-actions/auth@v1
-      with:
-        credentials_json: ${{ secrets.GCP_SA_KEY }}
-
-    - name: Configurar Docker para GCP
-      run: gcloud auth configure-docker
-
-    - name: Construir y subir imagen Docker
-      run: |
-        docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/ci-cd-ia:latest .
-        docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/ci-cd-ia:latest
-
-    - name: Desplegar en Cloud Run
-      run: |
-        gcloud run deploy ci-cd-ia \
-          --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/ci-cd-ia:latest \
-          --platform managed \
-          --region us-central1 \
-          --allow-unauthenticated
+- name: Construir y subir imagen Docker
+  run: |
+    docker build -t us-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/recomen/ci-cd-ia:latest .
+    docker push us-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/recomen/ci-cd-ia:latest
